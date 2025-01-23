@@ -18,7 +18,7 @@ phpHead(
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title text-center">Registration</h2>
-                        <form id="registrationForm" action="register.controller.php" method="POST" novalidate>
+                        <form id="registrationForm" action="register.action.php" method="POST" novalidate>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email:</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
