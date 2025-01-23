@@ -14,10 +14,10 @@
 
 // since not implemented, will use the following configs
 
-define('DB_HOST', 'db');
-define('DB_USER', 'mysql');
-define('DB_PASSWORD', "mysql");
-define('DB_NAME', 'event_management');
+$DB_HOST= 'db';
+$DB_USER= 'mysql';
+$DB_PASSWORD= "mysql";
+$DB_NAME= 'event_management';
 
 define('JWT_SECRET', '8futj-9i3kd-0ormv-1zmoqw');
 

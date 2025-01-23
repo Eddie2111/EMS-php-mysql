@@ -1,11 +1,8 @@
 <?php
 session_start();
 
-include "../common/db/connection.php";
 include "../common/db/queryBuilder.php";
 include "../common/db/tables.php";
-
-$queryBuilder = new QueryBuilder($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);

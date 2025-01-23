@@ -1,14 +1,11 @@
 <?php
 session_start();
 
-include "../common/db/connection.php";
 include "../common/db/queryBuilder.php";
 include "../common/db/tables.php";
 include "../common/utils/jwt.php";
 
 define('JWT_SECRET', '8futj-9i3kd-0ormv-1zmoqw');
-
-$queryBuilder = new QueryBuilder($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -45,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $jwtToken = encodeJWT($jwtPayload, JWT_SECRET);
             setcookie('token', $jwtToken, time() + 3600, '/', '', true, true);
 
-            header("Location: /dashboard/");
+            header("Location: /dashboard?message=Login+successful!+Welcome+back.");
             exit;
         } else {
             $_SESSION['error'] = "Invalid email or password.";

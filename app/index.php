@@ -1,5 +1,4 @@
 <?php
-include "./common/db/connection.php";
 include "./common/headers/index.php";
 ?>
 
