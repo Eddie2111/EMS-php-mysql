@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             $_SESSION['error'] = "Invalid email or password.";
-            header("Location: /login/");
+            header("Location: /login?message=Invalid+email+or+password");
             exit;
         }
     } catch (Exception $e) {
