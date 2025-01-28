@@ -41,3 +41,4 @@
 </div>
 
 <script src="./components/createEvent/createEventForm.script.js"></script>
+<script src="./components/createEvent/createEventForm.helpers.js"></script>

@@ -10,13 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
     $phone = trim($_POST['phone']);
 
-    // Check if required fields are empty
     if (empty($email) || empty($password) || empty($name)) {
         $_SESSION['error'] = "All fields are required.";
         header("Location: /register/");
         exit;
     }
-    // Check if email is valid
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error'] = "Invalid email format.";
         header("Location: /register/");
@@ -24,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         try {
-            // Check if user already exists
             $existingUser = $queryBuilder->select(USERS_TABLE, '*', ['email' => $email]);
 
             if (!empty($existingUser)) {
@@ -32,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: /register/");
                 exit;
             } else {
-                // Insert new user into the database
                 $queryBuilder->insert(USERS_TABLE, [
                     'email' => $email,
                     'password' => $hashedPassword,
@@ -44,14 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             }
         } catch (Exception $e) {
-            // Catch and handle any errors
             $_SESSION['error'] = "Error: " . $e->getMessage();
             header("Location: /register/");
             exit;
         }
     }
 } else {
-    // Redirect if not a POST request
     header("Location: /register/");
     exit;
 }

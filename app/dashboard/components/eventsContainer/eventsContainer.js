@@ -1,8 +1,7 @@
 let currentSort = { field: 'startDate', direction: 'asc' };
 
-// Create sort buttons container only once
 function createSortButtons() {
-    // Remove existing sort buttons if they exist
+
     $('#sort-buttons').remove();
 
     return `
@@ -43,7 +42,7 @@ function toggleSort(field) {
         currentSort.field = field;
         currentSort.direction = 'asc';
     }
-    loadEvents(1); // Reset to first page when sorting
+    loadEvents(1);
 }
 
 function getSortIcon(field) {
@@ -67,7 +66,7 @@ function loadEvents(page = getParamsFromURL().page) {
                 const eventGrid = $('#event-grid');
                 const container = eventGrid.parent();
 
-                // Add sort buttons before the grid if they don't exist
+            
                 if ($('#sort-buttons').length === 0) {
                     container.prepend(createSortButtons());
                 }

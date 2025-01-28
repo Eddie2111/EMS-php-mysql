@@ -52,7 +52,6 @@ function renderToast($message = '')
             }, 3000);
         }
 
-        // Automatically show toast if message exists
         const message = <?= json_encode($message); ?>;
         if (message) {
             showToast(message);
