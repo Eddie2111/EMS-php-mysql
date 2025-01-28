@@ -1,7 +1,6 @@
 <?php
 include_once __DIR__ . '/../headers/index.php';
 include_once __DIR__ . '/../utils/jwt.php';
-include_once __DIR__ . '/../utils/config.env.php';
 
 function isLoggedIn()
 {
@@ -18,22 +17,22 @@ function isLoggedIn()
 }
 ?>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="bg-body-tertiary navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="mb-2 mb-lg-0 me-auto navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="active nav-link" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="dropdown nav-item">
+                    <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dropdown
                     </a>
                     <ul class="dropdown-menu">
@@ -46,12 +45,12 @@ function isLoggedIn()
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <a class="disabled nav-link" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
             <div class="d-flex">
                 <?php if (isLoggedIn()): ?>
-                    <a href="/logout.php" class="btn btn-outline-danger">Logout</a>
+                    <a href="/common/utils/logout.php" class="btn btn-outline-danger">Logout</a>
                 <?php else: ?>
                     <a href="/login.php" class="btn btn-outline-primary me-2">Login</a>
                     <a href="/signup.php" class="btn btn-outline-success">Signup</a>

@@ -11,13 +11,15 @@ phpHead(
 ?>
 
 <body>
-
-    <div class="container mt-5">
-        <div class="row justify-content-center">
+    <?php
+    include("../common/components/navbar.php");
+    ?>
+    <div class="mt-5 container">
+        <div class="justify-content-center row">
             <div class="col-md-6">
-                <div class="card">
+                <div class="shadow card">
                     <div class="card-body">
-                        <h2 class="card-title text-center">Registration</h2>
+                        <h2 class="text-center card-title">Registration</h2>
                         <form id="registrationForm" action="register.action.php" method="POST" novalidate>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email:</label>
@@ -49,9 +51,13 @@ phpHead(
                                 <input type="tel" class="form-control" id="phone" name="phone">
                             </div>
 
-                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Register</button>
+                            <div class="d-grid"><button id="submitBtn" type="submit" class="btn btn-primary" disabled>Register</button></div>
                         </form>
                     </div>
+                    <p class="mt-2 text-center">
+                        <span>Have account?</span>
+                        <a href="/login/">Login</a>
+                    </p>
                 </div>
             </div>
         </div>

@@ -1,12 +1,12 @@
 <?php
-
-$host = 'mysql-db:3306';
-$db = 'event_management';
-$user = 'mysql';
-$password = 'mysql';
+require_once __DIR__ . "/../../env.config.php";
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$db", $user, $password);
+    $dbHost = DB_HOST;
+    $db = DB_NAME;
+    $user = DB_USER;
+    $password = DB_PASSWORD;
+    $conn = new PDO("mysql:host=$dbHost;dbname=$db", $user, $password);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
