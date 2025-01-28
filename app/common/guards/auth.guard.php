@@ -1,7 +1,7 @@
 <?php
 
-include __DIR__ . '/../utils/config.env.php';
-include __DIR__ . '/../utils/jwt.php';
+require_once __DIR__ . '/../../env.config.php';
+require_once __DIR__ . '/../utils/jwt.php';
 
 function verifyJWT()
 {

@@ -5,8 +5,8 @@ include "../common/db/queryBuilder.php";
 include "../common/db/tables.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    $email = strtolower(trim($_POST['email']));
+    $password = $_POST['password'];
     $name = trim($_POST['name']);
     $phone = trim($_POST['phone']);
 
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: /register/");
         exit;
     } else {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($password, PASSWORD_ARGON2I);
         try {
             $existingUser = $queryBuilder->select(USERS_TABLE, '*', ['email' => $email]);
 

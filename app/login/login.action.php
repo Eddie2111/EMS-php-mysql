@@ -1,11 +1,11 @@
 <?php
 session_start();
 
+require_once "../env.config.php";
 include "../common/db/queryBuilder.php";
 include "../common/db/tables.php";
 include "../common/utils/jwt.php";
 
-define('JWT_SECRET', '8futj-9i3kd-0ormv-1zmoqw');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             $_SESSION['error'] = "Invalid email or password.";
-            header("Location: /login/");
+            header("Location: /login?message=Invalid+email+or+password");
             exit;
         }
     } catch (Exception $e) {

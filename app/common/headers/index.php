@@ -1,6 +1,10 @@
 <?php
 ob_start();
+include __DIR__ . "/../../env.config.php";
+loadEnv();
+
 function phpHead($title = 'Document', $description = '', $keywords = '', $extraMeta = ''){
+    
     echo <<<HTML
     <head>
         <meta charset="UTF-8">

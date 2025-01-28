@@ -49,3 +49,16 @@ table Attendee {
   @@unique([eventId, userId])
 }
 ```
+
+```prisma
+table Roles {
+  id        Int      @id @default(autoincrement())
+  name      Role     @default(USER)
+}
+```
+```prisma
+enum Role {
+  ADMIN
+  USER
+}
+```

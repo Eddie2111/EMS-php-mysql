@@ -2,7 +2,7 @@ const form = document.getElementById('registrationForm');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const confirmPassword = document.getElementById('confirmPassword');
-const name = document.getElementById('name');
+const name_1 = document.getElementById('name');
 const submitBtn = document.getElementById('submitBtn');
 
 function validateEmail(email) {
@@ -51,13 +51,13 @@ function validateForm() {
         confirmPassword.nextElementSibling.style.display = 'none';
     }
 
-    if (name.value.trim() !== '' && !validateName(name.value)) {
-        name.classList.remove('is-valid');
-        name.classList.add('is-invalid');
+    if (name_1.value.trim() !== '' && !validateName(name_1.value)) {
+        name_1.classList.remove('is-valid');
+        name_1.classList.add('is-invalid');
         isValid = false;
-    } else if (name.value.trim() !== '') {
-        name.classList.remove('is-invalid');
-        name.classList.add('is-valid');
+    } else if (name_1.value.trim() !== '') {
+        name_1.classList.remove('is-invalid');
+        name_1.classList.add('is-valid');
     }
 
     submitBtn.disabled = !isValid;
