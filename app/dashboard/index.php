@@ -1,12 +1,12 @@
 <?php
-session_start(); // Ensure session_start() is at the top.
+session_start();
 
 include("../common/guards/auth.guard.php");
 include "../common/headers/index.php";
 include("../common/components/toast.php");
 
 try {
-    $userId = verifyJWT(); // Perform authentication first.
+    $userId = verifyJWT();
 } catch (Exception $e) {
     $_SESSION['error'] = $e->getMessage();
     header("Location: /login/");
@@ -29,7 +29,6 @@ renderToast($message);
 include("../common/components/navbar.php");
 ?>
 
-<h1>I was a guarded component! </h1>
 <?php
 include("./components/createEvent/creatEventForm.php");
 ?>

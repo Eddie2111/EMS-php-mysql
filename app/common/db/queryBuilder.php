@@ -1,6 +1,6 @@
 <?php
 
-$host = 'db';
+$host = 'mysql-db:3306';
 $db = 'event_management';
 $user = 'mysql';
 $password = 'mysql';
