@@ -48,6 +48,8 @@ phpHead(
     "Discover more about " . htmlspecialchars($event['title']) . ": " . htmlspecialchars($event['description'] ?? 'Explore our event details.'),
     "event details, " . htmlspecialchars($event['title']) . ", events"
 );
+
+include __DIR__ ."/../../common/components/navbar.php";
 ?>
 
 <body>
@@ -70,8 +72,10 @@ phpHead(
             </div>
             <div class="text-end card-footer">
                 <?php if ($userId === $event['creatorId']) : ?>
-                    <!-- Include the Edit Event form if the authenticated user is the creator -->
                     <?php include("./editEvent/editEventForm.php"); ?>
+                <?php endif; ?>
+                <?php if ($userId !== $event['creatorId']) : ?>
+                    <?php include("./joinEvent/joinEventForm.php"); ?>
                 <?php endif; ?>
                 <a href="/dashboard/" class="btn btn-secondary">Back to Events</a>
             </div>

@@ -44,8 +44,10 @@ CREATE TABLE Attendee (
 
 -- dev seeders
 
+-- create the user roles
 INSERT INTO Roles (name) VALUES ('ADMIN'), ('USER');
 
+-- create an admin user
 -- admin plain text password : admin123
 INSERT INTO User (
     email,
@@ -66,6 +68,7 @@ VALUES (
     NOW()
 );
 
+-- create a general user
 -- user plain text password : test123
 INSERT INTO User (
     email, 
@@ -86,8 +89,11 @@ VALUES (
     NOW()
 );
 
+
+-- create an event
 INSERT INTO Event (title, description, startDate, endDate, location, capacity, createdAt, updatedAt, creatorId) 
 VALUES ('Test Event', 'This is a test event', '2023-01-01 10:00:00', '2023-01-01 12:00:00', 'Test Location', 10, NOW(), NOW(), 1);
 
+-- create an attendee
 INSERT INTO Attendee (eventId, userId) 
 VALUES (1, 2);

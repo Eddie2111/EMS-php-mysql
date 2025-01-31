@@ -91,7 +91,7 @@ function loadEvents(page = getParamsFromURL().page) {
                                 </div>
                                 <div class="card-footer">
                                     <a href="/dashboard/event?id=${event.id}"
-                                        class="btn btn-primary" target="_blank">Learn More</a>
+                                        class="btn btn-primary">Learn More</a>
                                 </div>
                             </div>
                         </div>`;
