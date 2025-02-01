@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $conditions = ['email' => $email];
         $user = $queryBuilder->select(USERS_TABLE, '*', $conditions);
-
         if (!empty($user) && password_verify($password, $user[0]['password'])) {
             $_SESSION['user_id'] = $user[0]['id'];
             $_SESSION['email'] = $user[0]['email'];
@@ -34,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $jwtPayload = [
                 'sub' => $user[0]['id'],
                 'email' => $user[0]['email'],
+                'role' => $user[0]['roleId'],
                 'iat' => time(),
                 'exp' => time() + 3600
             ];

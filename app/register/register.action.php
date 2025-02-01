@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'email' => $email,
                     'password' => $hashedPassword,
                     'name' => $name,
-                    'phone' => $phone
+                    'phone' => $phone,
+                    'roleId' => 2,
                 ]);
 
                 $_SESSION['success'] = SUCCESS_REGISTRATION;

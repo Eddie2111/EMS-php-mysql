@@ -1,73 +1,107 @@
 <?php
 ob_start();
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="event_attendees.pdf"');
 
-$eventId = isset($_GET['eventId']) ? intval($_GET['eventId']) : null;
-
-if (!$eventId) {
-    http_response_code(400);
-    echo json_encode(['error' => 'Event ID is required']);
-    exit;
+function logError($message, $context = []) {
+    error_log("ERROR: $message" . (!empty($context) ? " | Context: " . print_r($context, true) : ""));
 }
 
-$eventWithAttendees = $queryBuilder->selectWithJoin(
-    'Event',
-    'Event.*, User.name as creator_name',
-    [
+try {
+    // Step 1: Validate Event ID
+    if (!isset($_GET['eventId']) || !filter_var($_GET['eventId'], FILTER_VALIDATE_INT)) {
+        throw new InvalidArgumentException('Valid Event ID is required');
+    }
+    $eventId = (int)$_GET['eventId'];
+
+    // Step 2: Fetch Event Details
+    $event = $queryBuilder->select('Event', '*', ['id' => $eventId]);
+    if (empty($event)) {
+        throw new RuntimeException('Event not found', 404);
+    }
+    $event = $event[0];
+
+    // Step 3: Fetch Attendees with User Details
+    $attendees = $queryBuilder->selectWithJoin(
+        'Attendee',
+        'Attendee.id, Attendee.eventId, Attendee.userId, Attendee.registeredAt, User.name, User.email',
         [
-            'type' => 'left',
-            'table' => 'User',
-            'on' => 'Event.creatorId = User.id'
-        ]
-    ],
-    ['Event.id' => $eventId]
-);
+            [
+                'type' => 'LEFT',
+                'table' => 'User',
+                'on' => 'Attendee.userId = User.id'
+            ]
+        ],
+        ['eventId' => $eventId]
+    );
 
-if (empty($eventWithAttendees)) {
-    http_response_code(404);
-    echo json_encode(['error' => 'Event not found']);
+    // Log attendees for debugging
+    logError('Fetched attendees:', ['attendees' => $attendees]);
+
+    if (empty($attendees)) {
+        throw new RuntimeException('No attendees found for this event', 404);
+    }
+
+    // Step 4: Prepare CSV Data
+    $csvData = [];
+    $headers = ['Name', 'Email', 'Registration Date'];
+    $csvData[] = $headers;
+
+    foreach ($attendees as $attendee) {
+        if (!is_array($attendee)) {
+            logError('Invalid attendee data format', ['attendee' => $attendee]);
+            continue;
+        }
+        $name = isset($attendee['name']) && !empty($attendee['name']) ? $attendee['name'] : 'N/A';
+        $email = isset($attendee['email']) && filter_var($attendee['email'], FILTER_VALIDATE_EMAIL) ? $attendee['email'] : 'N/A';
+        $registrationDate = isset($attendee['registeredAt']) && !empty($attendee['registeredAt']) ? $attendee['registeredAt'] : 'N/A';
+
+        $csvData[] = [$name, $email, $registrationDate];
+    }
+
+    // Step 5: Generate CSV File
+    $filename = 'event_attendees_' . $eventId . '.csv';
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+    $output = fopen('php://output', 'w');
+    if (!$output) {
+        throw new RuntimeException('Failed to create CSV output stream');
+    }
+
+    foreach ($csvData as $row) {
+        if (!fputcsv($output, $row)) {
+            throw new RuntimeException('Failed to write row to CSV');
+        }
+    }
+
+    fclose($output);
     exit;
+} catch (InvalidArgumentException $e) {
+    // Invalid input error
+    echo json_encode([
+        'success' => false,
+        'error' => $e->getMessage()
+    ]);
+    logError($e->getMessage(), ['input' => $_GET]);
+} catch (RuntimeException $e) {
+    // Runtime error (e.g., no attendees, file generation failure)
+    echo json_encode([
+        'success' => false,
+        'error' => $e->getMessage()
+    ]);
+    logError($e->getMessage(), ['eventId' => $eventId]);
+} catch (PDOException $e) {
+    // Database connection or query error
+    echo json_encode([
+        'success' => false,
+        'error' => 'Database error occurred'
+    ]);
+    logError('Database error: ' . $e->getMessage(), ['query' => $e->getTraceAsString()]);
+} catch (Exception $e) {
+    // General exception
+    echo json_encode([
+        'success' => false,
+        'error' => 'An internal server error occurred'
+    ]);
+    logError('Unexpected error: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
 }
-
-$event = $eventWithAttendees[0];
-
-$attendees = $queryBuilder->selectWithJoin(
-    'Attendee',
-    'User.name, User.email, User.phone',
-    [
-        [
-            'type' => 'left',
-            'table' => 'User',
-            'on' => 'Attendee.userId = User.id'
-        ]
-    ],
-    ['Attendee.eventId' => $eventId]
-);
-
-$pdf = "Event Attendees List\n\n";
-$pdf .= "Event: " . $event['title'] . "\n";
-$pdf .= "Description: " . ($event['description'] ?? 'N/A') . "\n";
-$pdf .= "Date: " . date('Y-m-d H:i', strtotime($event['startDate'])) . " to " . date('Y-m-d H:i', strtotime($event['endDate'])) . "\n";
-$pdf .= "Location: " . ($event['location'] ?? 'N/A') . "\n";
-$pdf .= "Created by: " . $event['creator_name'] . "\n\n";
-
-$pdf .= "Attendees:\n";
-$pdf .= str_pad("Name", 30) . str_pad("Email", 35) . "Phone\n";
-$pdf .= str_repeat("-", 80) . "\n";
-
-foreach ($attendees as $attendee) {
-    $pdf .= str_pad($attendee['name'] ?? 'N/A', 30) .
-        str_pad($attendee['email'] ?? 'N/A', 35) .
-        ($attendee['phone'] ?? 'N/A') . "\n";
-}
-
-
-$tempFile = tempnam(sys_get_temp_dir(), 'pdf');
-file_put_contents($tempFile, $pdf);
-
-
-readfile($tempFile);
-unlink($tempFile);
-exit;

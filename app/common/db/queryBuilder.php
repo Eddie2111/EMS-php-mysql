@@ -92,37 +92,32 @@ class QueryBuilder {
         return $stmt->execute();
     }
 
-     public function selectWithJoin($table, $columns = "*", $joins = [], $conditions = [], $limit = null, $offset = null, $orderBy = null) {
+    public function selectWithJoin($table, $columns = "*", $joins = [], $conditions = [], $limit = null, $offset = null, $orderBy = null, $groupBy = null) {
         $sql = "SELECT $columns FROM $table";
-
         foreach ($joins as $join) {
             $sql .= " " . strtoupper($join['type']) . " JOIN " . $join['table'] . " ON " . $join['on'];
         }
-
         if (!empty($conditions)) {
             $sql .= " WHERE " . implode(" AND ", array_map(fn($key) => "$key = :$key", array_keys($conditions)));
         }
-
+        if ($groupBy) {
+            $sql .= " GROUP BY $groupBy";
+        }
         if ($orderBy) {
             $sql .= " ORDER BY $orderBy";
         }
-
         if ($limit) {
             $sql .= " LIMIT $limit";
         }
-
         if ($offset) {
             $sql .= " OFFSET $offset";
         }
-
         $stmt = $this->conn->prepare($sql);
-
         foreach ($conditions as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }
-
         $stmt->execute();
-        return $stmt->fetchAll(pdo::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function beginTransaction() {

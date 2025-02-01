@@ -1,27 +1,48 @@
 <?php
 include_once __DIR__ . '/../headers/index.php';
 include_once __DIR__ . '/../utils/jwt.php';
+
 function isLoggedIn()
 {
+    $defaultReturn = [
+        'status' => false,
+        'role' => null
+    ];
+
     if (!isset($_COOKIE['token'])) {
-        return false;
+        return $defaultReturn;
     }
+
     try {
-        decodeJWT($_COOKIE['token'], JWT_SECRET);
-        return true;
+        $token = decodeJWT($_COOKIE['token'], JWT_SECRET);
+        if (!$token) {
+            return $defaultReturn;
+        }
+
+        $tokenData = json_decode(json_encode($token), true);
+        if (!isset($tokenData['role'])) {
+            return $defaultReturn;
+        }
+
+        return [
+            'status' => true,
+            'role' => $tokenData['role']
+        ];
     } catch (Exception $e) {
-        return false;
+        return $defaultReturn;
     }
 }
-?>
 
+$auth = isLoggedIn();
+$isLoggedIn = $auth['status'];
+$isAdmin = $isLoggedIn && $auth['role'] == 1;
+?>
 <style>
     .nav-link.btn-outline-light:hover {
         color: #000 !important;
         background-color: #fff !important;
     }
 </style>
-
 <nav class="bg-primary navbar navbar-dark navbar-expand-lg">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -36,14 +57,23 @@ function isLoggedIn()
                     <a class="nav-link" href="/"><i class="fa-home fas me-1"></i>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/events.php"><i class="fa-calendar fas me-1"></i>Events</a>
+                    <a class="nav-link" href="/dashboard/"><i class="fa-calendar fas me-1"></i>Events</a>
                 </li>
-                <?php if (isLoggedIn()): ?>
+                <?php if ($isLoggedIn): ?>
+                    <?php if ($isAdmin): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/admin/analytics/">
+                                <i class="fa-chart-bar fas me-1"></i>Analytics
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/admin/list-view/">
+                                <i class="fa-list fas me-1"></i>List View
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard/"><i class="fa-tachometer-alt fas me-1"></i>Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/create-event.php"><i class="fa-plus-circle fas me-1"></i>Create Event</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-outline-light ms-2 nav-link" href="/common/utils/logout.php">
