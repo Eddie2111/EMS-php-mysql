@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="./components/createEvent/createEventForm.style.css">
 
 <div class="justify-content-end container">
-    <button class="btn btn-primary" id="openEventModalBtn">Create New Event</button>
+    <button class="btn btn-primary" id="openEventModalBtn">+</button>
 </div>
 
 <div id="eventModal">

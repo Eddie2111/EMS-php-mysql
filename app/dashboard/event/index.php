@@ -1,8 +1,13 @@
-<?php
-session_start();
+<!DOCTYPE html>
+<html lang="en">
 
+<?php
+include_once __DIR__ . '/../../common/headers/index.php';
 include __DIR__ . "/../../common/guards/auth.guard.php";
 include __DIR__ . "/../../common/components/toast.php";
+require __DIR__ . '/../../common/db/queryBuilder.php';
+require __DIR__ . '/../../common/db/tables.php';
+include __DIR__ ."/../../common/components/navbar.php";
 
 try {
     $userId = verifyJWT();
@@ -14,8 +19,6 @@ try {
 
 $message = isset($_GET['message']) ? htmlspecialchars($_GET['message']) : '';
 
-require __DIR__ . '/../../common/db/queryBuilder.php';
-require __DIR__ . '/../../common/db/tables.php';
 
 $eventId = isset($_GET['id']) ? intval($_GET['id']) : null;
 
@@ -36,18 +39,13 @@ $user = $queryBuilder->select(USERS_TABLE, '*', ['id' => $event['creatorId']]);
 if (!empty($user)) {
     $event['creator'] = $user[0];
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<?php
-include_once __DIR__ . '/../../common/headers/index.php';
 phpHead(
     "Event Details | " . htmlspecialchars($event['title']),
     "Discover more about " . htmlspecialchars($event['title']) . ": " . htmlspecialchars($event['description'] ?? 'Explore our event details.'),
     "event details, " . htmlspecialchars($event['title']) . ", events"
 );
+
 ?>
 
 <body>
@@ -70,8 +68,10 @@ phpHead(
             </div>
             <div class="text-end card-footer">
                 <?php if ($userId === $event['creatorId']) : ?>
-                    <!-- Include the Edit Event form if the authenticated user is the creator -->
                     <?php include("./editEvent/editEventForm.php"); ?>
+                <?php endif; ?>
+                <?php if ($userId !== $event['creatorId']) : ?>
+                    <?php include("./joinEvent/joinEventForm.php"); ?>
                 <?php endif; ?>
                 <a href="/dashboard/" class="btn btn-secondary">Back to Events</a>
             </div>

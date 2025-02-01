@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once('../common/headers/index.php');
+<?php 
+include_once('../common/headers/index.php');
+include("../common/components/toast.php");
 phpHead(
     $title = "register",
     $description = "register from here",
     $keywords = "register, authentication, secure register",
     $extraMeta = `<link rel="stylesheet" href="./register.style.css">`,
 );
+$message = isset($_GET['message']) ? htmlspecialchars($_GET['message']) : '';
+renderToast($message);
 ?>
 
 <body>
