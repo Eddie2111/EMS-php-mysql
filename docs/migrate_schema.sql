@@ -58,9 +58,9 @@ INSERT INTO Role (name) VALUES
     ('ADMIN'),
     ('USER');
 
--- seeder
+-- Seeder
 
--- Insert admin user
+-- Insert admin user (already provided)
 -- Password: admin123
 INSERT INTO User (
     email,
@@ -76,7 +76,7 @@ INSERT INTO User (
     1  -- ADMIN role
 );
 
--- Insert test user
+-- Insert test user (already provided)
 -- Password: test123
 INSERT INTO User (
     email,
@@ -92,7 +92,26 @@ INSERT INTO User (
     2  -- USER role
 );
 
--- Insert test event
+-- Insert 10 additional users
+INSERT INTO User (
+    email,
+    password,
+    name,
+    phone,
+    roleId
+) VALUES
+    ('user1@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 1', '1112223333', 2),
+    ('user2@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 2', '2223334444', 2),
+    ('user3@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 3', '3334445555', 2),
+    ('user4@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 4', '4445556666', 2),
+    ('user5@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 5', '5556667777', 2),
+    ('user6@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 6', '6667778888', 2),
+    ('user7@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 7', '7778889999', 2),
+    ('user8@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 8', '8889990000', 2),
+    ('user9@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 9', '9990001111', 2),
+    ('user10@app.com', '$argon2i$v=19$m=65536,t=4,p=1$eHEyVm9MWm0vNXptWFkwWQ$+54+Soi/FnJGZdsq0v/Pv3anj0Q2TV7YhJfBX9WrcSA', 'User 10', '0001112222', 2);
+
+-- Insert 5 additional events
 INSERT INTO Event (
     title,
     description,
@@ -101,18 +120,15 @@ INSERT INTO Event (
     location,
     capacity,
     creatorId
-) VALUES (
-    'Test Event',
-    'This is a test event',
-    '2024-02-01 10:00:00',
-    '2024-02-01 12:00:00',
-    'Test Location',
-    10,
-    1  -- Created by admin
-);
+) VALUES
+    ('Event 1', 'Description for Event 1', '2024-03-01 10:00:00', '2024-03-01 12:00:00', 'Location 1', 20, 1),
+    ('Event 2', 'Description for Event 2', '2024-03-02 10:00:00', '2024-03-02 12:00:00', 'Location 2', 20, 1),
+    ('Event 3', 'Description for Event 3', '2024-03-03 10:00:00', '2024-03-03 12:00:00', 'Location 3', 20, 1),
+    ('Event 4', 'Description for Event 4', '2024-03-04 10:00:00', '2024-03-04 12:00:00', 'Location 4', 20, 1),
+    ('Event 5', 'Description for Event 5', '2024-03-05 10:00:00', '2024-03-05 12:00:00', 'Location 5', 20, 1);
 
--- Insert test attendee
+-- Insert 6 attendees on the first event
 INSERT INTO Attendee (eventId, userId)
-VALUES (1, 2);  -- User attending admin's event
+VALUES (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7);
 
 -- end

@@ -1,4 +1,7 @@
 <h1 class="mb-4 text-center">Events</h1>
+<?php
+include("./components/createEvent/createEventForm.php");
+?>
 <div class="my-5 container">
     <div id="event-grid" class="g-4 row"></div>
     <nav>

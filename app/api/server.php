@@ -29,7 +29,7 @@ try {
         case 'POST events/register':
             require_once __DIR__ . '/controllers/events/register.php';
             break;
-        case 'PATCH events/unregister':
+        case 'POST events/unregister':
             require_once __DIR__ . '/controllers/events/unregister.php';
             break;
         default:

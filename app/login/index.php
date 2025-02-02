@@ -4,6 +4,7 @@
 <?php
 include_once('../common/headers/index.php');
 include("../common/components/toast.php");
+include "../common/db/queryBuilder.php";
 phpHead(
     $title = "Login",
     $description = "Login from here",

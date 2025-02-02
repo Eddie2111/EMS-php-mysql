@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (input.id === 'title') {
             if (input.value.trim() === '') {
                 showError(input, 'Title is required.');
+            } else if (input.value.length > 100) {
+                showError(input, 'Title must not exceed 100 characters.');
             } else {
                 markValid(input);
             }
@@ -43,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showError(input, 'Capacity is required.');
             } else if (parseInt(input.value) <= 0 || isNaN(parseInt(input.value))) {
                 showError(input, 'Capacity must be a positive number.');
+            } else if (parseInt(input.value) > 10000) {
+                showError(input, 'Capacity cannot exceed 100,000.');
             } else {
                 markValid(input);
             }
@@ -72,4 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const error = input.parentNode.querySelector('.error-message');
         if (error) error.remove();
     }
+
+    document.querySelector('form').addEventListener('submit', (e) => {
+        const inputs = [title, startDate, endDate, capacity];
+        let hasErrors = false;
+
+        inputs.forEach((input) => {
+            validateInput(input);
+            if (input.parentNode.querySelector('.error-message')) {
+                hasErrors = true;
+            }
+        });
+
+        if (hasErrors) {
+            e.preventDefault();
+        }
+    });
 });

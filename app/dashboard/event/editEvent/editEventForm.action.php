@@ -3,7 +3,7 @@ session_start();
 
 include("../../../common/guards/auth.guard.php");
 include("../../../common/headers/index.php");
-include("../../../common/db/QueryBuilder.php");
+include("../../../common/db/queryBuilder.php");
 include("../../../common/db/tables.php");
 
 try {

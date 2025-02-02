@@ -3,19 +3,12 @@
 
 <?php
     include "./common/headers/index.php";
+    phphead(
+        $title= "EventFlow - Event Management System",
+        $description= "Create, manage, and track events efficiently with our comprehensive event management system.",
+        $keywords= "event management, event planning, event scheduling, event tracking, event registration, event management software, event management platform, event management system, event management tools, event management services, event management solutions, event management software, event management platform, event management system, event management tools, event management services, event management solutions",
+    )
 ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventFlow - Event Management System</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
-
 <body>
 
 <?php
@@ -34,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <img src="./common/assets/cover_vertical.png" alt="Event Management" class="shadow rounded img-fluid">
+                    <img src="./common/assets/cover_vertical.webp" alt="Event Management" class="shadow rounded img-fluid">
                 </div>
             </div>
         </div>
@@ -68,53 +61,6 @@
                             <i class="mb-3 text-primary fa-3x fa-chart-line fas"></i>
                             <h5 class="card-title">Analytics & Reports</h5>
                             <p class="card-text">Access event statistics and download comprehensive reports in CSV format.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-light py-5">
-        <div class="container">
-            <h2 class="mb-5 text-center">Recent Events</h2>
-            <div class="g-4 row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="shadow-sm h-100 card">
-                        <img src="/api/placeholder/400/200" class="card-img-top" alt="Event 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Tech Conference 2025</h5>
-                            <p class="card-text">Join us for the biggest tech conference of the year.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted"><i class="fa-calendar-day fas me-2"></i>Mar 15, 2025</small>
-                                <button class="btn btn-primary btn-sm">Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="shadow-sm h-100 card">
-                        <img src="/api/placeholder/400/200" class="card-img-top" alt="Event 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Music Festival</h5>
-                            <p class="card-text">Experience the best musical performances live.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted"><i class="fa-calendar-day fas me-2"></i>Apr 20, 2025</small>
-                                <button class="btn btn-primary btn-sm">Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="shadow-sm h-100 card">
-                        <img src="/api/placeholder/400/200" class="card-img-top" alt="Event 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Business Summit</h5>
-                            <p class="card-text">Network with industry leaders and experts.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted"><i class="fa-calendar-day fas me-2"></i>May 10, 2025</small>
-                                <button class="btn btn-primary btn-sm">Register Now</button>
-                            </div>
                         </div>
                     </div>
                 </div>

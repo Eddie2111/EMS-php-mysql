@@ -1,5 +1,5 @@
 <?php
-include("../../../common/db/QueryBuilder.php");
+include("../../../common/db/queryBuilder.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $eventId = intval($_POST['id']);
