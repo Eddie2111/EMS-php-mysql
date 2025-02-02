@@ -56,7 +56,7 @@ Note: More documentation of the project is placed at ``/docs``, check it out for
 
 ### Live Demo
 
-- A Live demo has been setup by the help of [InfinityFree]()
+- A Live demo has been setup by the help of [InfinityFree](https://dash.infinityfree.com/)
 - **Project URL**: → [Go to EventFlow](https://asm-ems.ct.ws/)
 
 ### Setup Instructions
@@ -147,6 +147,17 @@ Note: More documentation of the project is placed at ``/docs``, check it out for
 
   - Use AJAX for dynamic content loading.
   - Improve the user interface with more responsive designs.
+
+### Screenshots/Screen Recording
+
+![Screenshot 1](https://github.com/Eddie2111/EMS-php-mysql/raw/d9ae02b36106ca2488fad133cc1c27354ef8ee16/docs/demo/1.PNG)  
+![Screenshot 2](https://github.com/Eddie2111/EMS-php-mysql/blob/d9ae02b36106ca2488fad133cc1c27354ef8ee16/docs/demo/2.PNG)  
+![Screenshot 3](https://github.com/Eddie2111/EMS-php-mysql/blob/d9ae02b36106ca2488fad133cc1c27354ef8ee16/docs/demo/3.PNG)  
+![Screenshot 4](https://github.com/Eddie2111/EMS-php-mysql/blob/d9ae02b36106ca2488fad133cc1c27354ef8ee16/docs/demo/4.PNG)  
+![Screenshot 5](https://github.com/Eddie2111/EMS-php-mysql/blob/d9ae02b36106ca2488fad133cc1c27354ef8ee16/docs/demo/5.PNG)  
+![Screenshot 6](https://github.com/Eddie2111/EMS-php-mysql/blob/d9ae02b36106ca2488fad133cc1c27354ef8ee16/docs/demo/6.PNG)  
+![Screenshot 7](https://github.com/Eddie2111/EMS-php-mysql/blob/d9ae02b36106ca2488fad133cc1c27354ef8ee16/docs/demo/7.PNG)  
+
 
 ### Conclusion
 
