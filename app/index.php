@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <img src="./common/assets/cover_vertical.png" alt="Event Management" class="shadow rounded img-fluid">
+                    <img src="./common/assets/cover_vertical.webp" alt="Event Management" class="shadow rounded img-fluid">
                 </div>
             </div>
         </div>

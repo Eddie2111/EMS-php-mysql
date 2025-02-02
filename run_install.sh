@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e  # Exit on failure
-
 echo "Starting Event Management System..."
 
 # Check if Docker is installed
@@ -32,6 +30,7 @@ docker cp ./docs/migrate_schema.sql mysql-db:/migrate_schema.sql
 
 # Run database migrations
 echo "Initializing database..."
-docker exec -i mysql-db mysql -u root -p mysql event_management < ./docs/migrate_schema.sql || { echo "Database migration failed"; sleep 500; }
+docker exec -it mysql-db mysql -u root --password=mysql < migrate_schema.sql
 
 echo "Event Management System is up and running at http://localhost:8080"
+sleep 500;

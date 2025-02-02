@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 include_once __DIR__ . '/../../common/headers/index.php';
 include __DIR__ . "/../../common/guards/auth.guard.php";
@@ -71,6 +69,7 @@ phpHead(
                 <p><strong>Location:</strong> <?php echo htmlspecialchars($event['location'] ?? 'Not specified.'); ?></p>
                 <p><strong>Capacity:</strong> <?php echo $event['capacity'] ?? 'No limit'; ?></p>
                 <p><strong>Created by:</strong> <?php echo htmlspecialchars($event['creator']['name'] ?? 'Unknown'); ?></p>
+                <p><strong>Registered Attendees:</strong> <?php echo count($attendees); ?></p>
             </div>
 
             <br /><br /><br />
@@ -85,35 +84,38 @@ phpHead(
                 <a href="/dashboard/" class="btn btn-secondary">Back to Events</a>
             </div>
         </div>
-        <div class="mt-3 card" style="margin-top: 12px;">
-            <div class="bg-primary text-white card-header">
-                <h3>Registered Attendees</h3>
-            </div>
-            <div class="card-body">
-                <?php if (!empty($attendees)) : ?>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Registered At</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($attendees as $attendee) : ?>
+
+        <?php if ($isAdmin) : ?>
+            <div class="mt-3 card">
+                <div class="bg-primary text-white card-header">
+                    <h3>Registered Attendees</h3>
+                </div>
+                <div class="card-body">
+                    <?php if (!empty($attendees)) : ?>
+                        <table class="table table-striped">
+                            <thead>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($attendee['name'] ?? 'N/A'); ?></td>
-                                    <td><?php echo htmlspecialchars($attendee['email'] ?? 'N/A'); ?></td>
-                                    <td><?php echo date('F j, Y, g:i a', strtotime($attendee['registeredAt'] ?? 'N/A')); ?></td>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Registered At</th>
                                 </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php else : ?>
-                    <p class="text-center">No one has registered for this event yet.</p>
-                <?php endif; ?>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($attendees as $attendee) : ?>
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($attendee['name'] ?? 'N/A'); ?></td>
+                                        <td><?php echo htmlspecialchars($attendee['email'] ?? 'N/A'); ?></td>
+                                        <td><?php echo date('F j, Y, g:i a', strtotime($attendee['registeredAt'] ?? 'N/A')); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else : ?>
+                        <p class="text-center">No one has registered for this event yet.</p>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

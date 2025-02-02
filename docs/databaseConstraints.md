@@ -1,8 +1,11 @@
 ## Database Details
+
+Current database schema is described below.
+
 provider = "mysql"
-url      = env("DATABASE_URL")
 
 ## Tables and relations
+
 ```prisma
 table User {
   id        Int      @id @default(autoincrement())
@@ -46,7 +49,7 @@ table Attendee {
   event Event @relation(fields: [eventId], references: [id])
   user  User  @relation(fields: [userId], references: [id])
 
-  @@unique([eventId, userId])
+ -> unique([eventId, userId])
 }
 ```
 
@@ -56,6 +59,7 @@ table Roles {
   name      Role     @default(USER)
 }
 ```
+
 ```prisma
 enum Role {
   ADMIN

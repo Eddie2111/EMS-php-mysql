@@ -38,6 +38,7 @@ try {
     ]);
     if (!empty($existingRegistration)) {
         throw new Exception('You are already registered for this event');
+        responseGenerator(['message' => 'You are already registered for this event'], 400);
     }
 
     if ($event['capacity']) {
@@ -47,7 +48,7 @@ try {
             ['eventId' => $data['eventId']]
         );
         if ($currentAttendees[0]['count'] >= $event['capacity']) {
-            throw new Exception('Event has reached maximum capacity');
+            responseGenerator(['message' => 'No more participants allowed for this event'], 400);
         }
     }
 
