@@ -4,6 +4,8 @@
 
 The goal of this project was to develop a simple, web-based event management system that allows users to create, manage, and view events, as well as register attendees and generate event reports. The app was named "EventFlow".
 
+Live Project URL: → [Go to EventFlow](https://asm-ems.ct.ws/)
+
 ## Project Overview
 
 ### Features
