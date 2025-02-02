@@ -1,3 +1,5 @@
+## v3
+
 #!/bin/bash
 
 echo "Starting Event Management System..."
@@ -24,13 +26,9 @@ until docker exec mysql-db mysqladmin ping -h"localhost" --silent; do
     sleep 2
 done
 
-# Copy migration SQL file to container
-echo "Copying migration file..."
-docker cp ./docs/migrate_schema.sql mysql-db:/migrate_schema.sql
-
-# Run database migrations
-echo "Initializing database..."
-docker exec -it mysql-db mysql -u root --password=mysql < migrate_schema.sql
-
+# Migrate the database
+echo "Migrating database"
+start ./migration.sh
 echo "Event Management System is up and running at http://localhost:8080"
-sleep 500;
+
+sleep 500

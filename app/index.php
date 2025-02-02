@@ -68,53 +68,6 @@
         </div>
     </section>
 
-    <section class="bg-light py-5">
-        <div class="container">
-            <h2 class="mb-5 text-center">Recent Events</h2>
-            <div class="g-4 row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="shadow-sm h-100 card">
-                        <img src="/api/placeholder/400/200" class="card-img-top" alt="Event 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Tech Conference 2025</h5>
-                            <p class="card-text">Join us for the biggest tech conference of the year.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted"><i class="fa-calendar-day fas me-2"></i>Mar 15, 2025</small>
-                                <button class="btn btn-primary btn-sm">Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="shadow-sm h-100 card">
-                        <img src="/api/placeholder/400/200" class="card-img-top" alt="Event 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Music Festival</h5>
-                            <p class="card-text">Experience the best musical performances live.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted"><i class="fa-calendar-day fas me-2"></i>Apr 20, 2025</small>
-                                <button class="btn btn-primary btn-sm">Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="shadow-sm h-100 card">
-                        <img src="/api/placeholder/400/200" class="card-img-top" alt="Event 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Business Summit</h5>
-                            <p class="card-text">Network with industry leaders and experts.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted"><i class="fa-calendar-day fas me-2"></i>May 10, 2025</small>
-                                <button class="btn btn-primary btn-sm">Register Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer class="bg-dark py-4 text-light">
         <div class="container">
             <div class="row">

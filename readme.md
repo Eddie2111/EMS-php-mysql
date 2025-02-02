@@ -150,4 +150,4 @@ Note: More documentation of the project is placed at ``/docs``, check it out for
 
 ### Conclusion
 
-This Event Management System provides a robust platform for managing events and attendees. The system is built using pure PHP, MySQL, and Docker for a scalable and secure solution. The documentation provided here should help you set up and run the project successfully.
+This Event Management System provides a robust platform for managing events and attendees. The system is built using pure PHP, MySQL, and Docker for a scalable and secure solution. The documentation provided here should help you set up and run the project successfully. But if there is any issue, please contact me at tarek42223@gmail.com
