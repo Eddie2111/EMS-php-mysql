@@ -30,8 +30,5 @@ include("../common/components/navbar.php");
 ?>
 
 <?php
-include("./components/createEvent/creatEventForm.php");
-?>
-<?php
 include("./components/eventsContainer/index.php");
 ?>

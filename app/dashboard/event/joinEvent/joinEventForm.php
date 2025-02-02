@@ -30,9 +30,8 @@ $attended = $queryBuilder->select(ATTENDEES_TABLE, '*', [
 $buttonText = !empty($attended) ? 'Cancel Join' : 'Join Event';
 $buttonClass = !empty($attended) ? 'btn-danger' : 'btn-success';
 $apiEndpoint = !empty($attended)
-    ? 'http://localhost:8080/api/server.php/events/unregister'
-    : 'http://localhost:8080/api/server.php/events/register';
-$apiMethod = !empty($attended) ? 'PATCH' : 'POST';
+    ? '/api/server.php/events/unregister'
+    : '/api/server.php/events/register';
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -90,10 +89,10 @@ $apiMethod = !empty($attended) ? 'PATCH' : 'POST';
 <?php renderToast(); ?>
 
 <script>
-    async function handleApiCall(url, method, body) {
+    async function handleApiCall(url, body) {
         try {
             const response = await fetch(url, {
-                method: method,
+                method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -143,8 +142,8 @@ $apiMethod = !empty($attended) ? 'PATCH' : 'POST';
 
     document.getElementById("actionButton").addEventListener("click", function() {
         handleApiCall(
-            '<?php echo $apiEndpoint; ?>',
-            '<?php echo $apiMethod; ?>', {
+            '<?php echo $apiEndpoint; ?>'
+            , {
                 eventId: <?php echo $eventId; ?>
             }
         );

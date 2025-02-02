@@ -1,6 +1,13 @@
 <?php
+ob_start();
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Content-Type: application/json');
+
 require __DIR__ . '/../../../common/guards/auth.guard.php';
 require __DIR__ . '/../../helpers/response.helpers.php';
+
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
@@ -19,14 +26,12 @@ try {
 try {
     $queryBuilder->beginTransaction();
 
-    // Fetch event details
     $event = $queryBuilder->select('Event', '*', ['id' => $data['eventId']]);
     if (empty($event)) {
         throw new Exception('Event not found');
     }
     $event = $event[0];
 
-    // Check if user is already registered
     $existingRegistration = $queryBuilder->select('Attendee', '*', [
         'eventId' => $data['eventId'],
         'userId' => $userId
@@ -35,7 +40,6 @@ try {
         throw new Exception('You are already registered for this event');
     }
 
-    // Check event capacity
     if ($event['capacity']) {
         $currentAttendees = $queryBuilder->select(
             'Attendee',
@@ -47,7 +51,6 @@ try {
         }
     }
 
-    // Register the attendee
     $success = $queryBuilder->insert('Attendee', [
         'eventId' => $data['eventId'],
         'userId' => $userId
@@ -56,7 +59,6 @@ try {
         throw new Exception('Failed to register for event');
     }
 
-    // Commit the transaction
     $queryBuilder->commit();
     responseGenerator(['message' => 'Successfully registered for event'], 200);
 } catch (Exception $e) {

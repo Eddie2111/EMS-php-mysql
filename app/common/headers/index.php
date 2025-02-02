@@ -2,7 +2,6 @@
 ob_start();
 include __DIR__ . "/../../env.config.php";
 loadEnv();
-
 function phpHead($title = 'Document', $description = '', $keywords = '', $extraMeta = ''){
     $jquery_location = "/common/headers/jquery-3.6.0.min.js";
     echo <<<HTML
@@ -13,8 +12,7 @@ function phpHead($title = 'Document', $description = '', $keywords = '', $extraM
         <title>{$title}</title>
         <meta name="description" content="{$description}">
         <meta name="keywords" content="{$keywords}">
-        <script src="{$jquery_location}"
-        ></script>
+        <script src="{$jquery_location}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                 crossorigin="anonymous"></script>

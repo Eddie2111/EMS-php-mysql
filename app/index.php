@@ -3,19 +3,12 @@
 
 <?php
     include "./common/headers/index.php";
+    phphead(
+        $title= "EventFlow - Event Management System",
+        $description= "Create, manage, and track events efficiently with our comprehensive event management system.",
+        $keywords= "event management, event planning, event scheduling, event tracking, event registration, event management software, event management platform, event management system, event management tools, event management services, event management solutions, event management software, event management platform, event management system, event management tools, event management services, event management solutions",
+    )
 ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventFlow - Event Management System</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-</head>
-
 <body>
 
 <?php

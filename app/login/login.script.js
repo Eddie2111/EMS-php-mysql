@@ -40,8 +40,6 @@ function validateForm() {
 
 email.addEventListener('input', validateForm);
 password.addEventListener('input', validateForm);
-confirmPassword.addEventListener('input', validateForm);
-name.addEventListener('input', validateForm);
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
