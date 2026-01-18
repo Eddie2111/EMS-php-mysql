@@ -1,0 +1,14 @@
+Note:1 
+Please dont forget to add executive permissions to the following files,
+
+migration.sh
+run_install.sh
+
+example:
+
+chmod +x ./migration.sh ./run_install.sh
+
+
+Note:2
+
+- Please don't forget to rename .env.example to .env to avoid env access errors.

@@ -46,6 +46,7 @@ if (!defined('ENV_CONFIG_LOADED')) {
         define('ENV_CONFIG_LOADED', true);
     } catch (Exception $e) {
         error_log("Environment configuration error: " . $e->getMessage());
+        echo "Environment configuration error: " . $e->getMessage();
         die("Configuration error occurred. Please check the server logs.");
     }
 }

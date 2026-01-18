@@ -1,1 +1,1 @@
-docker exec mysql-db mysql -u root --password=mysql event_management < ./docs/migrate_schema.sql
+sudo docker exec mysql-db mysql -u root --password=mysql event_management < ./docs/migrate_schema.sql
